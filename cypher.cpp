@@ -6,9 +6,11 @@ using namespace std;
 void createMessage();
 void decodeFile();
 
+
 int main () {
     
     int selection;
+    //fstream codedFile;
     do {
       
     cout << ("----------------------") << endl;
@@ -38,11 +40,12 @@ return 0;
 void createMessage(){
     // ask for the name of the file
     string fileName;
-    cout << ("Choose a name for the file: ") << fileName << endl;
+    cout << ("Choose a name for the file: ") << endl;
     cin >> fileName;
     
     // Create the file if doesn't exist.
     fstream codedFile;
+    
     codedFile.open(fileName, ios::out);
     codedFile.close();
 
@@ -63,6 +66,7 @@ void createMessage(){
             codedFile << int(myArray[i]) << endl;
             codedFile.close();
         }
+    }
 }
 
 
@@ -70,10 +74,11 @@ void decodeFile() {
 
       // ask for the name of the file
     string fileName;
-    cout << ("Choose a name for the file: ") << fileName << endl;
+    cout << ("Wich file you want to decode?: ") << fileName << endl;
     cin >> fileName; 
 
 // read from the file, and print the decoded message
+     fstream codedFile;
     codedFile.open(fileName, ios::in);
     if (codedFile.is_open()){
         string line;
