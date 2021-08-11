@@ -3,12 +3,44 @@
 #include <string>
 using namespace std;
 
+void createMessage();
+void decodeFile();
+
 int main () {
+    
+    int selection;
+    do {
+      
+    cout << ("----------------------") << endl;
+    cout << ("         Menu         ")<< endl;
+    cout << ("----------------------") << endl;
+    cout << ("1: create message") << endl;
+    cout << ("2: deciper message") << endl;
+    cout << ("3: Exit") << endl;
+    cin >> selection;
+    
+switch(selection) {
+    case 1: createMessage();break;
+    case 2: decodeFile();break;
+    case 3: break;
+    default: ;
+    }
+    
+} while(selection!=3);
+
+cout << "Thank you";
+  
+return 0;
+}
+
+
+
+void createMessage(){
     // ask for the name of the file
     string fileName;
-    cout << ("Insert file name: ") << fileName << endl;
+    cout << ("Choose a name for the file: ") << fileName << endl;
     cin >> fileName;
-
+    
     // Create the file if doesn't exist.
     fstream codedFile;
     codedFile.open(fileName, ios::out);
@@ -31,10 +63,17 @@ int main () {
             codedFile << int(myArray[i]) << endl;
             codedFile.close();
         }
-    
-        }
+}
 
-    // read from the file, and print the decoded message
+
+void decodeFile() {
+
+      // ask for the name of the file
+    string fileName;
+    cout << ("Choose a name for the file: ") << fileName << endl;
+    cin >> fileName; 
+
+// read from the file, and print the decoded message
     codedFile.open(fileName, ios::in);
     if (codedFile.is_open()){
         string line;
@@ -45,12 +84,4 @@ int main () {
         codedFile.close();
     }
 
-
-    /*for (int i=0; i<sizeArray; i++) {
-        cout << int(*(myArray+i)) << "   ";
-       //cout << int(myArray[i]) <<"  ";
-    }*/
-
-  
-return 0;
 }
